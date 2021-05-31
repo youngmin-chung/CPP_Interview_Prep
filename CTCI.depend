@@ -1,4 +1,10 @@
 # depslib dependency file v1.0
-1622471520 source:c:\backup\c_workspace\ctci\main.cpp
+1622471878 source:c:\backup\c_workspace\ctci\main.cpp
+	<iostream>
+
+1622471878 source:c:\backup\c_workspace\ctci\01_classandinheritance.cpp
+	<iostream>
+
+1622472293 source:c:\backup\c_workspace\ctci\02_constanddeconst.cpp
 	<iostream>
 
