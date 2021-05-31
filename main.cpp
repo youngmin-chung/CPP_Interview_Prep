@@ -21,6 +21,20 @@ public:
         PersonId = 150515;
     }
 
+    // Default values
+    /*
+    int func(int a, int b = 3){
+        x = a;
+        y = b;
+        return a + b;
+
+    }
+    int main() {
+        w = func(4);
+        z = func(4, 5);
+
+    }
+    */
     // add virtual keyword here
     virtual void aboutMe(){
         cout << "I am a person.";
@@ -78,7 +92,7 @@ int main()
     */
     cout << "\n\n";
     vP->addCourse("History");
-    delete vP; // Important! Make sure to declare allocated memory.
+    delete vP; // Important! Make sure to declare allocated memory. // prints "Deleting a person."
     cout << "\n\n";
     // Test constructor
     // cout << "Test Default constructor\n";
@@ -86,5 +100,73 @@ int main()
     // cout << "Person ID is "<< y.PersonId <<"\n";
 
 
+
+    // Pointers and References
+    cout << "Example of Pointers\n";
+    int * p = new int;
+    *p = 7;
+    int * q = p;
+    *p = 8;
+    cout << "Result is " << *q; // prints 8
+    cout << "\n\nExample of References\n";
+    int a = 5;
+    int & b = a;
+    b = 7;
+    cout << "Result is " << a; // prints 7
+
+    cout << "\n\nExample of Pointer Arithmetic\n";
+    int * pa = new int[2];
+    pa[0] = 0;
+    pa[1] = 1;
+    pa++;
+    cout << *pa; // Outputs 1
+
+
+
+
+
+
+
+
+
+
     return 0;
 }
+
+/*
+* Templates are a way of reusing code to apply the same class to different
+* For example, we might have a list-like data structure which we would like to
+* use for lists of various types. The code below implements this with the
+* ShiftedList class.
+*/
+
+template <class T> class ShiftedList {
+    T* array;
+    int offset, size;
+public:
+    ShiftedList(int sz) : offset(0), size(sz){
+        array = new T[size];
+    }
+    ~ShiftedList() {
+        delete [] array;
+    }
+
+    void shiftBy(int n ){
+        offset = (offset + n) % size;
+    }
+
+    T getAt(int i){
+        return array[convertIndex(i)];
+    }
+
+    void setAt(T item, int i){
+        array[convertIndex(i)] = item;
+    }
+
+private:
+    int convertIndex(int i){
+        int index = (i - offset) % size;
+        while(index < 0) index += size;
+        return index;
+    }
+};
